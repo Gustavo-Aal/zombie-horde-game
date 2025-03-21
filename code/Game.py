@@ -25,9 +25,8 @@ class Game:
   def run(self):    
     clock = pygame.time.Clock()
 
-    pygame.key.set_repeat(0,0)
     while True:
-      clock.tick(60)
+      clock.tick(60)  
 
       self.current_scene.run()
       self.input_system.handle_event()

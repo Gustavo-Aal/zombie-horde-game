@@ -7,6 +7,8 @@ class InputSystem:
     self.key_actions = {}
     self.pressed_key_actions = {}
 
+    self.events = []
+
   def bind_key(self, key, action):
     self.key_actions[key] = action
 
@@ -18,14 +20,16 @@ class InputSystem:
       del self.key_actions[key]
 
   def handle_event(self):
-    for event in pygame.event.get():
+    self.events = pygame.event.get()
+    for event in self.events:
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()      
+      
       if event.type == pygame.KEYDOWN:
         if event.key in self.key_actions:
           self.key_actions[event.key]()
-
-      if event.type == pygame.QUIT:
-        pygame.quit()
-        sys.exit()
+      
     
     pressed_keys = pygame.key.get_pressed()
     for key in self.pressed_key_actions:

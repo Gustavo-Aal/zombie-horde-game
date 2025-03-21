@@ -1,6 +1,8 @@
 from code.Background import Background
 from code.Const import WIN_WIDTH, WIN_HEIGHT
 from code.Player import Player
+from code.Zombie import Zombie
+import random
 
 class EntityFactory:
  
@@ -19,4 +21,9 @@ class EntityFactory:
 
       case 'Player1':
         return Player("Player1", (10, WIN_HEIGHT/2))
+      case 'Player2':
+        return Player("Player2", (10, WIN_HEIGHT/2))
+
+      case 'Zombie':
+        return Zombie("Zombie", (WIN_WIDTH, random.randint(10, WIN_HEIGHT -10)))
 
