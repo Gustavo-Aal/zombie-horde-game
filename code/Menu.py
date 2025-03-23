@@ -6,6 +6,7 @@ from pygame.rect import Rect
 from code.Const import WIN_WIDTH, WIN_HEIGHT, COLOR_ORANGE, COLOR_WHITE, GAME_TITLE, COLOR_TITLE, MENU_OPTIONS
 from code.InputSystem import InputSystem
 from code.Scene import Scene
+from code.AudioManager import AudioManager
 
 class Menu(Scene):
 
@@ -22,7 +23,7 @@ class Menu(Scene):
     self.input_system.bind_key(pygame.K_DOWN, self._incrementMenuOption)
     self.input_system.bind_key(pygame.K_RETURN, self._selectMenuOption)
 
-    print("Menu initialized")
+    AudioManager.play_music("assets/ambientmain.mp3")
     
   def run(self):      
       self._renderMenu()   
@@ -35,7 +36,7 @@ class Menu(Scene):
     self.bordered_text(text_size=100, text=GAME_TITLE, 
                 text_color=(255, 217, 193), 
                 text_center_pos=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 100), 
-                border_color=(231, 113, 103), 
+                border_color=COLOR_TITLE, 
                 border_thickness=4)
     # Menu options  
     for i in range(len(MENU_OPTIONS)):
@@ -61,11 +62,8 @@ class Menu(Scene):
       case 0:
         self.scene_factory.change_scene("Level1")
       case 1:
-        return "Options"
+        self.scene_factory.change_scene("Scores")
       case 2:
-        return "Exit"
-      
-      case 4:
         pygame.quit()
         sys.exit()
 

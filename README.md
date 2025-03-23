@@ -1,26 +1,89 @@
-# Zombie Horde
+# 🧟 Zombie Horde
 
-Projeto desenvolvido no **Curso Superior Técnologo de Análise de Desenvolimento de Sistemas** do **Centro Universitário Internacional Uninter** para a matéria de **Linguagem de Programação Aplicada**.
+**Zombie Horde** é um shooter top-down desenvolvido com **Python** e **Pygame**, onde o jogador precisa sobreviver por 20 segundos enfrentando uma horda de zumbis.  
+Este projeto foi desenvolvido como parte da disciplina **Linguagem de Programação Aplicada** no curso de **Análise e Desenvolvimento de Sistemas** do **Centro Universitário Internacional Uninter**.
 
-## Especificações do projeto
+## 📦 Tecnologias e Arquitetura
 
-Desenvolvido com [Pygame](https://github.com/pygame/pygame).
+- **Linguagem:** Python 3
+- **Biblioteca:** [Pygame](https://github.com/pygame/pygame)
+- **Banco de Dados:** SQLite (nativo do Python, para armazenamento de pontuações)
 
-O game loop é centralizado na classe `Game` instanciada pelo `Main` e a lógica de cada contexto do jogo é encapsulada por cenas. Isso remove a necessidade de múltiplos loops e de repetição de código que é compartilhado entre cada contexto (como a verificação do evento `pygame.QUIT`).
+### 🧠 Padrões de Projeto Utilizados
 
-Utilizando o padrão de singletons para gerenciar as cenas e inputs.
+- **Singleton:**
+  - `SceneFactory` e `InputSystem` usam Singleton para manter instâncias únicas e globais.
+- **Factory:**
+  - `SceneFactory` e `EntityFactory` são responsáveis pela criação organizada de cenas e entidades.
+- **Mediator:**
+  - `EntityMediator` centraliza a lógica de colisão e interações entre entidades (tiros, zumbis, jogador).
 
-O gerenciamento de inputs é realizado por um singleton `InputSystem` que fornece um método para vincular funções com as keys desejadas.
+### 🧩 Arquitetura Modular
 
-As cenas encapsulam a lógica de cada contexto do jogo, como Menu, Level 1, Level 2, etc.
+O código é organizado em **cenas** e **entidades**, com responsabilidades bem definidas, como por exemplo:
 
-## Créditos
+- `Game.py`: Loop principal e ciclo de vida do jogo
+- `Scene.py`: Classe base abstrata para as cenas
+- `Menu.py`, `Level.py`, `GameOverMenu.py`: Cenas específicas
+- `Entity.py`: Classe base para todas as entidades
+- `Player.py`, `Zombie.py`, `PlayerShot.py`, `Background.py`: Entidades do jogo
+- `InputSystem.py`, `AudioManager.py`, `EntityMediator.py`: Sistemas de suporte
 
-Este projeto utiliza assets disponibilizados no [OpenGameArt.org](https://opengameart.org) sob a licença [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+## 🎮 Gameplay
 
-### Assets utilizados:
+### Objetivo
 
-- **Animated Top Down Survivor Player** por [rileygombart](https://opengameart.org/users/rileygombart): https://opengameart.org/content/animated-top-down-survivor-player
-- **"Animated Top Down Zombie"** por [rileygombart](https://opengameart.org/users/rileygombart): https://opengameart.org/content/animated-top-down-zombie
+Sobreviva por **20 segundos** enquanto elimina o maior número possível de zumbis!
 
-Os assets podem ter sido modificados para melhor se adequar ao projeto.
+### Mecânicas
+
+- Zumbis aparecem a cada segundo e atacam o jogador
+- Cada zumbi tem 100 de vida e causa 10 de dano ao encostar
+- O jogador tem 100 de vida e atira projéteis que causam 34 de dano
+- Cada acerto em um zumbi vale **1 ponto**
+- O jogo termina quando o tempo acaba ou o jogador morre
+
+### Controles
+
+- 🔼 🔽 ◀️ ▶️: Movimento
+- **Espaço**: Atirar
+
+## 📺 HUD
+
+Durante o jogo, a interface exibe:
+
+- ❤️ Vida do jogador
+- 🧟‍♂️ Quantidade de zumbis
+- ⏱️ Tempo restante
+- ⭐ Pontuação atual
+
+---
+
+## 🔊 Áudio e Assets
+
+O jogo conta com sprites animados, efeitos sonoros e música de fundo.
+
+### Créditos dos Assets
+
+Os seguintes assets foram utilizados sob a licença [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), com possíveis modificações:
+
+- 👤 [**Animated Top Down Survivor Player**](https://opengameart.org/content/animated-top-down-survivor-player) – por [rileygombart](https://opengameart.org/users/rileygombart)
+- 🧟 [**Animated Top Down Zombie**](https://opengameart.org/content/animated-top-down-zombie) – por [rileygombart](https://opengameart.org/users/rileygombart)
+- 🎵 [**Tragic ambient main menu**](https://opengameart.org/content/tragic-ambient-main-menu) – por brandon75689
+- 🔫 [**Shotgun Shoot + Reload**](https://opengameart.org/content/shotgun-shoot-reload) – por Mike Koenig (Soundbible)
+
+---
+
+## 🚀 Como Executar
+
+```bash
+# Clone o repositório
+git clone https://github.com/Gustavo-Aal/zombie-horde-game.git
+cd zombie-horde-game
+
+# Instale as dependências
+pip install pygame
+
+# Execute o jogo
+python main.py
+```

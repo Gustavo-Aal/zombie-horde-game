@@ -4,12 +4,20 @@ import pygame
 BACKGROUND_SPEED = 2
 
 # C
+COLOR_BLACK = (0, 0, 0)
 COLOR_ORANGE = (255, 75, 0)
 COLOR_WHITE = (255, 255, 255)
 COLOR_TITLE = (231, 113, 103)
+COLOR_RED = (175, 0, 0)
 
 # E
 EVENT_ZOMBIE = pygame.USEREVENT + 1
+ENTITY_HEALTH = {
+  'Level1Bg0': 999999999,
+  'Player': 100,
+  'PlayerShot': 1,
+  'Zombie': 100
+}
 
 # G
 
@@ -18,39 +26,28 @@ GAME_TITLE = "Zombie Horde"
 # M
 MENU_OPTIONS = (
   "New Game",
-  "New Game 2P - Cooperative",
-  "New Game 2P - Competitive",
   "Score",
   "Exit"
 )
 
 # P
-PLAYER_KEY_UP = {
-  "Player1": pygame.K_UP,
-  "Player2": pygame.K_w
-}
-PLAYER_KEY_DOWN = {
-  "Player1": pygame.K_DOWN,
-  "Player2": pygame.K_s
-}
-PLAYER_KEY_LEFT = {
-  "Player1": pygame.K_LEFT,
-  "Player2": pygame.K_a
-}
-PLAYER_KEY_RIGHT = {
-  "Player1": pygame.K_RIGHT,
-  "Player2": pygame.K_d
-} 
+PLAYER_KEY_UP =  pygame.K_UP
+PLAYER_KEY_DOWN = pygame.K_DOWN
+PLAYER_KEY_LEFT = pygame.K_LEFT
+PLAYER_KEY_RIGHT = pygame.K_RIGHT
+PLAYER_KEY_SHOOT = pygame.K_SPACE
 
 PLAYER_SPEED = 5
-ZOMBIE_SPEED = 3
-
-
-
-
+PLAYER_MAX_AMMO = 20
+PLAYER_SHOT_SPEED = 20
+PLAYER_SHOT_COOLDOWN = 150
+PLAYER_SHOT_DAMAGE = 34
 
 
 # W
 WIN_WIDTH = 1000
 WIN_HEIGHT = 600
+# Z
 
+ZOMBIE_SPEED = 3
+ZOMBIE_DAMAGE = 10

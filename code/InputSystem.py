@@ -19,9 +19,15 @@ class InputSystem:
     if key in self.key_actions:
       del self.key_actions[key]
 
+  def clear_binds(self):
+    self.key_actions = {}
+    self.pressed_key_actions = {}
+
   def handle_event(self):
+    
     self.events = pygame.event.get()
     for event in self.events:
+      
       if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()      

@@ -9,3 +9,6 @@ class Background(Entity):
 
     if self.rect.right <= 0:
       self.rect.left = WIN_WIDTH
+
+  def take_damage(self, damage: int):
+    pass
